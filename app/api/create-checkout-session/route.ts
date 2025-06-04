@@ -9,6 +9,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_your_key", {
 
 export async function POST(request: NextRequest) {
   try {
+    // Add this debug logging
+    console.log("STRIPE_SECRET_KEY exists:", !!process.env.STRIPE_SECRET_KEY);
+    console.log(
+      "STRIPE_SECRET_KEY prefix:",
+      process.env.STRIPE_SECRET_KEY?.substring(0, 100)
+    );
+
     const body = await request.json();
     const { amount, currency, userId } = body;
 

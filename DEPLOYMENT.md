@@ -29,26 +29,12 @@ NEXT_PUBLIC_APP_URL=https://your-deployed-url.com
 
 ## Deployment Options
 
-### Option 1: Vercel (Recommended)
+### Vercel
 
 1. Push code to GitHub repository
 2. Connect repository to Vercel
 3. Add environment variables in Vercel dashboard
 4. Deploy
-
-### Option 2: Netlify
-
-1. Build the project: `npm run build`
-2. Deploy the `.next` folder to Netlify
-3. Add environment variables in Netlify dashboard
-4. Configure serverless functions
-
-### Option 3: Heroku
-
-1. Add `package.json` start script
-2. Create Procfile
-3. Deploy to Heroku
-4. Add environment variables via Heroku CLI or dashboard
 
 ## Stripe Webhook Configuration
 

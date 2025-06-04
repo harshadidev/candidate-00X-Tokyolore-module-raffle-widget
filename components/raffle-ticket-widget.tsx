@@ -66,7 +66,9 @@ export default function RaffleTicketWidget({
       setError("❌ Error, try again.");
       console.error(err);
     } finally {
-      setIsJoiningRaffle(false);
+      setTimeout(() => {
+        setIsJoiningRaffle(false);
+      }, 500);
     }
   };
 
@@ -110,7 +112,7 @@ export default function RaffleTicketWidget({
       {!isExpanded ? (
         <button
           onClick={() => setIsExpanded(true)}
-          className="w-full h-full flex items-center justify-center bg-[#E91E63] text-white shadow-lg hover:bg-opacity-90 transition-colors"
+          className="w-full h-full flex items-center justify-center bg-[#E91E63] text-white shadow-lg hover:bg-opacity-90 transition-all duration-300 ease-in-out hover:shadow-xl"
           style={{ borderRadius: "8px" }}
           aria-label="Open raffle ticket widget"
         >
@@ -118,17 +120,22 @@ export default function RaffleTicketWidget({
         </button>
       ) : (
         <div
-          className="w-full h-full bg-white shadow-lg p-4 flex flex-col border"
+          className="w-full h-full bg-white shadow-xl p-4 flex flex-col border animate-slideIn"
           style={{
             borderRadius: "8px",
             borderColor: "var(--accent-color, #E91E63)",
+            boxShadow: "0 10px 25px -5px rgba(233, 30, 99, 0.3)",
+            animation: "slideIn 0.3s ease-out",
           }}
         >
           <div className="flex justify-between items-center mb-4">
-            <h3 className="font-bold text-lg">Raffle Tickets</h3>
+            <h3 className="font-bold text-lg flex items-center">
+              <Ticket className="w-5 h-5 mr-2 text-[#E91E63]" />
+              <span>Raffle Tickets</span>
+            </h3>
             <button
               onClick={() => setIsExpanded(false)}
-              className="text-gray-500 hover:text-gray-700"
+              className="text-gray-500 hover:text-[#E91E63] transition-colors duration-200"
               aria-label="Close raffle ticket widget"
             >
               ✕
@@ -137,7 +144,9 @@ export default function RaffleTicketWidget({
 
           <div className="flex-grow flex flex-col items-center justify-center min-h-0">
             {error ? (
-              <div className="text-red-500 text-center mb-4">{error}</div>
+              <div className="text-red-500 text-center mb-4 font-medium">
+                {error}
+              </div>
             ) : null}
 
             {isInitialLoading ? (
@@ -147,16 +156,19 @@ export default function RaffleTicketWidget({
               </div>
             ) : (
               <div className="text-center w-full">
-                <p className="text-xl mb-6">
+                <p className="text-xl mb-6 font-medium">
                   ✅ You have {ticketCount} tickets.
                 </p>
 
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <button
                     onClick={enterRaffle}
                     disabled={isJoiningRaffle || isProcessingPayment}
-                    className="py-2 px-4 rounded-md transition-all duration-200 w-full text-white relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 min-h-[40px] flex items-center justify-center"
-                    style={{ backgroundColor: "var(--primary-color, #E91E63)" }}
+                    className="py-2 px-4 rounded-md transition-all duration-300 w-full text-white relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 min-h-[44px] flex items-center justify-center font-semibold"
+                    style={{
+                      backgroundColor: "#E91E63",
+                      boxShadow: "0 4px 10px -2px rgba(233, 30, 99, 0.4)",
+                    }}
                   >
                     <span className="flex items-center justify-center">
                       {isJoiningRaffle && (
@@ -169,8 +181,11 @@ export default function RaffleTicketWidget({
                   <button
                     onClick={proceedToPayment}
                     disabled={isJoiningRaffle || isProcessingPayment}
-                    className="py-2 px-4 rounded-md transition-all duration-200 w-full text-white relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 min-h-[40px] flex items-center justify-center"
-                    style={{ backgroundColor: "var(--accent-color, #22c55e)" }}
+                    className="py-2 px-4 rounded-md transition-all duration-300 w-full text-white relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 min-h-[44px] flex items-center justify-center font-semibold"
+                    style={{
+                      backgroundColor: "var(--primary-color, #22c55e)",
+                      boxShadow: "0 4px 10px -2px rgba(34, 197, 94, 0.4)",
+                    }}
                   >
                     <span className="flex items-center justify-center">
                       {isProcessingPayment && (

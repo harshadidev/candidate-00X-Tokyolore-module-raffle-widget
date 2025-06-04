@@ -33,6 +33,7 @@ export interface PaymentRequest {
   amount: number;
   currency: string;
   userId: string;
+  ticketCount?: number;
 }
 
 /**

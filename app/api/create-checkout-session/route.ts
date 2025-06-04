@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
 
     // Parse and validate request body
     const body = await request.json().catch(() => ({}));
-    const { amount, currency, userId } = body;
+    const { amount, currency, userId, ticketCount: providedTicketCount } = body;
 
     // Input validation
     if (!validators.isValidAmount(amount)) {
@@ -81,8 +81,11 @@ export async function POST(request: NextRequest) {
     const origin =
       request.headers.get("origin") || process.env.NEXT_PUBLIC_APP_URL || "";
 
-    // Calculate the number of tickets based on the payment amount (1 ticket per $1.00)
-    const ticketCount = Math.floor(amount / 100);
+    // Use provided ticketCount if available, otherwise calculate based on amount (1 ticket per $1.00)
+    const ticketCount =
+      typeof providedTicketCount === "number"
+        ? providedTicketCount
+        : Math.floor(amount / 100);
 
     // Create a Stripe checkout session
     const session = await stripe.checkout.sessions.create({

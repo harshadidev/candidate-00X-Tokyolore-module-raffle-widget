@@ -35,11 +35,11 @@ export default function RaffleTicketWidget({
       fetchTickets();
     }
   }, [isExpanded, ticketCount, fetchTickets]);
-
   const handleProceedToPayment = () => {
     proceedToPayment({
       amount: APP_CONFIG.stripe.ticketPrice,
       currency: APP_CONFIG.stripe.currency,
+      ticketCount: ticketCount || 1, // Default to 1 if null
     });
   };
 

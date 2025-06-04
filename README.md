@@ -51,7 +51,7 @@ This repository contains the **Raffle Ticket Widget** module for TokyoLore.com, 
 
 ## 🚀 Live Demo
 
-**Frontend**: [Your deployed URL here]
+**Frontend**: [Your deployed URL here](https://raffle-ticket-widget.vercel.app/)
 **API Endpoints**: All `/api/*` routes accessible over HTTPS
 
 ## 🛠️ Tech Stack
@@ -67,8 +67,8 @@ This repository contains the **Raffle Ticket Widget** module for TokyoLore.com, 
 1. **Clone the repository**
 
    ```bash
-   git clone [your-repo-url]
-   cd candidate-00X-Tokyolore-module-raffle-widget
+   git clone [repo-url](https://github.com/harshadidev/candidate-00X-Tokyolore-raffle.git)
+   cd candidate-00X-Tokyolore-raffle
    ```
 
 2. **Install dependencies**
@@ -102,7 +102,6 @@ This repository contains the **Raffle Ticket Widget** module for TokyoLore.com, 
 STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
 STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
 STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
-NEXT_PUBLIC_APP_URL=https://your-deployed-url.com
 ```
 
 ## 📁 Project Structure
@@ -134,24 +133,13 @@ Use Stripe test cards:
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+### Vercel
 
 ```bash
 vercel --prod
 ```
 
-### Netlify
 
-```bash
-npm run build
-# Deploy .next folder
-```
-
-### Heroku
-
-```bash
-git push heroku main
-```
 
 ## 📝 Implementation Notes
 
@@ -177,6 +165,6 @@ git push heroku main
 
 ---
 
-**Repository**: `candidate-00X-Tokyolore-module-raffle-widget`
+**Repository**: `candidate-00X-Tokyolore-raffle`
 **Module**: Raffle Ticket Widget + Stripe Integration + CareDuel Banner + Awards Panels
 **Status**: ✅ Complete and Ready for Production

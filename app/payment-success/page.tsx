@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function PaymentSuccess() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
+  const ticketsPurchased = searchParams.get("tickets_purchased");
   const [ticketCount, setTicketCount] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -53,7 +54,9 @@ export default function PaymentSuccess() {
           </div>
         ) : (
           <div className="text-center my-8">
-            <p className="text-xl mb-2">✅ You have {ticketCount} tickets.</p>
+            <p className="text-xl mb-2">
+              ✅ You have {ticketsPurchased || "1"} tickets.
+            </p>
           </div>
         )}
 

@@ -40,16 +40,19 @@ export async function POST(request: NextRequest) {
       userTickets[userId] = 0;
     }
 
-    // Add tickets based on payment amount
+    // Get the ticket count from metadata or calculate based on payment amount
     // $1 = 1 ticket
-    const amountPaid = session.amount_total || 0;
-    const ticketsToAdd = Math.floor(amountPaid / 100);
+    const ticketCount = session.metadata?.ticketCount
+      ? parseInt(session.metadata.ticketCount, 10)
+      : Math.floor((session.amount_total || 0) / 100);
 
-    userTickets[userId] += ticketsToAdd;
+    // Add tickets to the user's account
+    userTickets[userId] += ticketCount;
 
     return NextResponse.json({
       success: true,
       tickets: userTickets[userId],
+      purchasedTickets: ticketCount,
     });
   }
 
